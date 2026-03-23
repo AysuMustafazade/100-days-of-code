@@ -45,9 +45,9 @@
 
 | File | Description |
 |------|-------------|
-| `notes.md` | Detailed notes with explanations and code snippets |
+| `notes.md` | Detailed notes with explanations |
 | `README.md` | This file |
-
+| `examples/ ` | practical code examples|
 ---
 
 ## 💡 Key Takeaways
