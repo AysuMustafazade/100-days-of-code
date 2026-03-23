@@ -136,29 +136,78 @@ Reusable blocks of code.
 
 ## 11. Variable Scope
 
-Where variables can be accessed.
+**Scope** defines where a variable can be accessed.
 
-### Types:
-- Local
-- Global
+### Local scope — inside a function
+```python
+def my_func():
+    x = 10      # local variable
+    print(x)    # works fine
 
-### LEGB Rule:
-1. Local  
-2. Enclosing  
-3. Global  
-4. Built-in  
+my_func()
+print(x)        # ❌ NameError — x doesn't exist outside
+```
 
-💡 Scope controls variable visibility
+### Global scope — outside all functions
+```python
+x = 100         # global variable
+
+def my_func():
+    print(x)    # ✅ can READ global variable
+
+my_func()       # prints 100
+```
+
+### Modifying a global variable from inside a function
+```python
+counter = 0
+
+def increment():
+    global counter      # declare intent to modify global
+    counter += 1
+
+increment()
+print(counter)   # 1
+```
+
+> 💡 Using `global` too much is bad practice. Prefer returning values and reassigning.
+
+### LEGB Rule — Python looks for variables in this order:
+1. **L**ocal
+2. **E**nclosing (nested functions)
+3. **G**lobal
+4. **B**uilt-in (`len`, `print`, etc.)
 
 ---
 
 ## 12. Tracebacks
 
-Error messages showing:
-- where error happened
-- what type of error
+A **traceback** is Python's error report — it shows what went wrong and where.
+```
+Traceback (most recent call last):
+  File "script.py", line 6, in <module>
+    result = divide(10, 0)
+  File "script.py", line 2, in divide
+    return a / b
+ZeroDivisionError: division by zero
+```
 
-💡 Read from bottom → top
+**How to read it:**
+- Read from **bottom to top** — the last line is the actual error
+- The error type: `ZeroDivisionError`
+- The message: `division by zero`
+- The file and line number: `script.py, line 2`
+
+**Common errors:**
+
+| Error | Cause |
+|-------|-------|
+| `SyntaxError` | Invalid Python syntax |
+| `NameError` | Variable not defined |
+| `TypeError` | Wrong type operation (`"a" + 1`) |
+| `IndexError` | List index out of range |
+| `ZeroDivisionError` | Division by zero |
+| `IndentationError` | Wrong indentation |
 
 ---
 
